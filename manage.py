@@ -35,7 +35,6 @@ if __name__ == "__main__":
                 if (update_time > df.iloc[i, 1]) & (flag == 0):
                     print('変更が検出されたので変数を読み込みます')
                     print('読み込み中...')
-                    print('manage loop')
                     load()
                     print('読み込みが終わりました')
                     flag = 1
@@ -43,10 +42,9 @@ if __name__ == "__main__":
         print('変更は検出されませんでした')
 
     df_new.to_csv('csv/update.csv', index=False)
-    print('rewrite csv')
 
     time.sleep(5)
 
-    side.mk_command_side()
+    write_side = side.Side()
+    write_side.mk_command_side()
     front.mk_command_front()
-    print('write side')

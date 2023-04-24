@@ -123,5 +123,4 @@ def to_txt(sheet):
     path = "csv\parameters.csv"
     df = pd.DataFrame(list(sorted(d.items())), columns=['name', 'value'])
     df.to_csv(path, index=False)
-    print('sheet')
     return
