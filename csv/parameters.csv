@@ -1,6 +1,6 @@
 name,value
-D,835
-DaiwaD,839
+D,650
+DaiwaD,654
 DaiwaH,72
 DaiwaW,2124
 DoorD,22
@@ -8,10 +8,10 @@ Door_Tenka,10.5
 Door_Tenka_inside,7.5
 Door_shelf,24
 H,2253
-PanelD,850
-PanelD_B,850
-PanelD_C,850
-PanelD_D,850
+PanelD,665
+PanelD_B,665
+PanelD_C,665
+PanelD_D,665
 PanelH,2193
 PanelH_B,2193
 PanelH_C,2193
@@ -19,10 +19,10 @@ PanelH_D,2193
 PanelW,18
 PanelW_inner,7
 PanelW_outer,11
-TenkaD,851
-TenkaD_B,821
-TenkaD_C,821
-TenkaD_D,821
+TenkaD,666
+TenkaD_B,636
+TenkaD_C,636
+TenkaD_D,636
 TenkaH,18
 TenkaW,684
 TenkaW_B,684
@@ -38,9 +38,9 @@ UraW_B,675
 UraW_C,675
 UraW_D,675
 W,2124
-d_B,835
-d_C,835
-d_D,835
+d_B,650
+d_C,650
+d_D,650
 flag,"[True, True, True]"
 gap_back,8
 gap_dowel,32

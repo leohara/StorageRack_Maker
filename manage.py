@@ -1,7 +1,6 @@
 import pandas as pd
 import glob
 import os
-import time
 
 from setup import prepare
 from files import side
@@ -43,8 +42,17 @@ if __name__ == "__main__":
 
     df_new.to_csv('csv/update.csv', index=False)
 
-    time.sleep(5)
-
     write_side = side.Side()
     write_side.mk_command_side()
-    front.mk_command_front()
+    write_front = front.Front()
+    write_front.mk_command_front()
+
+    side_f = open('scripts/side.txt', 'r')
+    side_script = side_f.read()
+    side_f.close()
+    front_f = open('scripts/front.txt', 'r')
+    front_script = front_f.read()
+    front_f.close()
+    all_f = open('scripts/all.txt', 'w')
+    all_f.write(side_script + front_script)
+    all_f.close()
