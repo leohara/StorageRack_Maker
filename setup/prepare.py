@@ -107,7 +107,7 @@ class Sheet:
         self.shelfH = 18
 
         self.gap_dowel_front = 36
-        self.gap_dowel_back = 55
+        self.gap_dowel_back = 53
         self.gap_dowel = 32
         self.gap_back = 8
         self.tyobanW = 45
