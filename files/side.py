@@ -12,23 +12,23 @@ class Side:
         self.x = self.param.x_side
         self.y = self.param.y_side
         # tyoban_lines & tyoban
-        self.margin1 = 142  # 最上下端
-        self.margin2 = 576  # 固定棚なしの上下
-        self.margin3 = 608  # 固定棚ありの上下
-        self.margin4 = self.param.DaiwaH - 12  # 台輪 - フローリング
+        margin1 = 142  # 最上下端
+        margin2 = 576  # 固定棚なしの上下
+        margin3 = 608  # 固定棚ありの上下
+        margin4 = self.param.DaiwaH - 12  # 台輪 - フローリング
 
         # 固定棚無し
         if self.param.H <= 2157:
             tyoban_center_h = self.param.H - (
-                self.param.Door_Tenka * 2 + self.margin1 * 2 + self.margin2 * 2 + self.margin4
+                self.param.Door_Tenka * 2 + margin1 * 2 + margin2 * 2 + margin4
             )
-            self.tyoban_list = [self.param.Door_Tenka + self.margin1, self.margin2, tyoban_center_h, self.margin2]
+            self.tyoban_list = [self.param.Door_Tenka + margin1, margin2, tyoban_center_h, margin2]
         # 固定棚有り
         elif self.param.H > 2157:
             tyoban_center_h = self.param.H - (
-                self.param.Door_Tenka * 2 + self.margin1 * 2 + self.margin3 * 2 + self.margin4
+                self.param.Door_Tenka * 2 + margin1 * 2 + margin3 * 2 + margin4
             )
-            self.tyoban_list = [self.param.Door_Tenka + self.margin1, self.margin3, tyoban_center_h, self.margin3]
+            self.tyoban_list = [self.param.Door_Tenka + margin1, margin3, tyoban_center_h, margin3]
 
         # 全然合わないので2061だけ603.5スタートでそこから468ずつ足した
         # CD51のリスト
