@@ -51,12 +51,13 @@ class Sheet:
         for i in range(int(len(conv_list) / 4)):
             param = conv_list[i * 4: i * 4 + 4]
             for j in list(conv_dict.keys()):
-                if j in self.order_from_left:
-                    for k in range(3):
-                        # 変数を動的に生成
-                        exec(
-                            'self.{} = {}'.format(conv_dict[j][k], param[k + 1])
-                        )
+                if param[0][-1] == j:
+                    if j in self.order_from_left:
+                        for k in range(3):
+                            # 変数を動的に生成
+                            exec(
+                                'self.{} = {}'.format(conv_dict[j][k], param[k + 1])
+                            )
 
         exec('self.tall_Panel_flag = 0 if self.w_{} > self.w_{} else 1'.format(
             self.order_from_left[0],

@@ -108,12 +108,12 @@ class Front:
                 Y2 = Y1 + PanelH - prevH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
-            elif PanelH < prevH:
+            if PanelH < prevH:
                 Y1 = Y1 + PanelH
                 Y2 = Y1 + prevH - PanelH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
-            elif enum == 0:
+            if enum == 0:
                 Y2 = Y1 + PanelH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
