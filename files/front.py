@@ -124,6 +124,8 @@ class Front:
             elif enum != self.param.num - 1:
                 X2 = X1 + TenkaW + 2 * self.param.PanelW_inner + 2 * 2 + prev_flag * (-9) + f_flag * 9
             else:
+                Y1 = self.y
+                Y2 = Y1 + PanelH
                 X2 = X1 + TenkaW + self.param.PanelW_outer + 2 * self.param.PanelW_inner + 2 + prev_flag * (-9) + f_flag * 9
             command = commands.line_command(X1, Y2, X2, Y2)
             self.command_list.append(command)
