@@ -244,30 +244,30 @@ class Front:
 
     def magenta_line(self):
         X_ = self.x
-        for block, boolean in zip(self.w_list, self.param.flag):
+        for block, boolean, height in zip(self.w_list, self.param.flag, self.PanelH_list):
             if not boolean:
                 X_ = X_ + self.param.PanelW + block
             else:
                 X1 = X_ + block / 2 + self.param.PanelW
-                Y1 = self.y + self.param.PanelH - self.param.Door_Tenka
+                Y1 = self.y + height - self.param.Door_Tenka
                 X2 = X_ + block / 2 + self.param.PanelW
                 Y2 = self.y + self.param.Door_Tenka
                 line = commands.line_command(X1, Y1, X2, Y2)
                 self.command_list.append(line)
                 X1 = X_ + block / 2 + 15 + self.param.PanelW
-                Y1 = self.y + self.param.PanelH - self.param.Door_Tenka
+                Y1 = self.y + height - self.param.Door_Tenka
                 X2 = X_ + block / 2 + 15 + self.param.PanelW
                 Y2 = self.y + self.param.Door_Tenka
                 line = commands.line_command(X1, Y1, X2, Y2)
                 self.command_list.append(line)
                 X1 = X_ + block / 2 - 15 + self.param.PanelW
-                Y1 = self.y + self.param.PanelH - self.param.Door_Tenka
+                Y1 = self.y + height - self.param.Door_Tenka
                 X2 = X_ + block / 2 - 15 + self.param.PanelW
                 Y2 = self.y + self.param.Door_Tenka
                 line = commands.line_command(X1, Y1, X2, Y2)
                 self.command_list.append(line)
                 X1 = X_ + block / 2 - 15 + self.param.PanelW
-                Y1 = self.y + self.param.PanelH - self.param.Door_Tenka
+                Y1 = self.y + height - self.param.Door_Tenka
                 X2 = X_ + block / 2 + 15 + self.param.PanelW
                 Y2 = self.y + self.param.PanelH - self.param.Door_Tenka
                 line = commands.line_command(X1, Y1, X2, Y2)
