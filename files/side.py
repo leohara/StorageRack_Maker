@@ -18,14 +18,14 @@ class Side:
         margin4 = self.param.DaiwaH - 12  # 台輪 - フローリング
 
         # 固定棚無し
-        if self.param.H <= 2157:
-            tyoban_center_h = self.param.H - (
+        if self.param.h_B <= 2157:
+            tyoban_center_h = self.param.h_B - (
                 self.param.Door_Tenka * 2 + margin1 * 2 + margin2 * 2 + margin4
             )
             self.tyoban_list = [self.param.Door_Tenka + margin1, margin2, tyoban_center_h, margin2]
         # 固定棚有り
-        elif self.param.H > 2157:
-            tyoban_center_h = self.param.H - (
+        elif self.param.h_B > 2157:
+            tyoban_center_h = self.param.h_B - (
                 self.param.Door_Tenka * 2 + margin1 * 2 + margin3 * 2 + margin4
             )
             self.tyoban_list = [self.param.Door_Tenka + margin1, margin3, tyoban_center_h, margin3]
@@ -109,7 +109,7 @@ class Side:
 
     # 裏板を描く
     def ura(self):
-        X1 = self.x + self.param.D
+        X1 = self.x + self.param.d_B
         Y1 = self.y + 13
         X2 = X1 + self.param.UraD
         Y2 = Y1 + self.param.h_D - 87
@@ -268,7 +268,7 @@ class Side:
             X1 = self.x + self.param.gap_dowel_front - self.param.tyobanW / 2
             X2 = self.x + self.param.gap_dowel_front + self.param.tyobanW / 2
             Y1 += h
-            self.param.H = Y1
+            self.param.h_B = Y1
             line = commands.line_command(X1, Y1, X2, Y1)
             self.command_list.append(line)
 
@@ -299,14 +299,14 @@ class Side:
 
         # 3列のパターン
         three_columns_list = [550, 580, 650]
-        if self.param.D in three_columns_list:
+        if self.param.d_B in three_columns_list:
             three_columns_flag = 1
-            if self.param.D == 566:
+            if self.param.d_B == 566:
                 middle_column = front_column + 257
             else:
                 middle_column = back_column - 250
 
-        if self.param.D == 835:
+        if self.param.d_B == 835:
             five_columns_flag = 1
             second_column = front_column + 257
             third_column = second_column + 220

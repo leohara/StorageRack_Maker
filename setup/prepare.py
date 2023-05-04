@@ -5,22 +5,15 @@ import pandas as pd
 class Sheet:
     def __init__(self,):
         sheet1 = openpyxl.load_workbook("setup\storage_drawing.xlsx",
-                                        data_only=True)['ｲﾚｷﾞｭﾗｰ物入ダボ']
-        sheet2 = openpyxl.load_workbook("setup\storage_drawing.xlsx",
                                         data_only=True)['ｲﾚｷﾞｭﾗｰ物入']
 
-        self.x_side = sheet2['AB6'].value
-        self.y_side = sheet2['AC6'].value
-        self.x_front = sheet2['AB7'].value
-        self.y_front = sheet2['AC7'].value
-
-        # 変換後のパラメーター
-        self.W = sheet1['J14'].value
-        self.H = sheet1['L14'].value  # 地面から上天下板までの寸法
-        self.D = sheet1['N14'].value  # 内法
+        self.x_side = sheet1['AB6'].value
+        self.y_side = sheet1['AC6'].value
+        self.x_front = sheet1['AB7'].value
+        self.y_front = sheet1['AC7'].value
 
         order_dict = {}
-        for row, alphabet in zip(sheet2["O7:O11"], ['A', 'B', 'C', 'D']):
+        for row, alphabet in zip(sheet1["O7:O11"], ['A', 'B', 'C', 'D']):
             for col in row:
                 if col.value is not None:
                     order_dict[alphabet] = col.value
@@ -33,7 +26,7 @@ class Sheet:
 
         self.flag = [False if i == 'A' else True for i in self.order_from_left]
 
-        sheet_range = sheet2['P7':'U10']  # 取得範囲
+        sheet_range = sheet1['P7':'U10']  # 取得範囲
         conv_list = list()
         for row in sheet_range:
             for cell in row:
@@ -63,7 +56,7 @@ class Sheet:
             self.order_from_left[0],
             self.order_from_left[1]))
 
-        sheet_range = sheet2['P16':'U47']  # 取得範囲
+        sheet_range = sheet1['P16':'U47']  # 取得範囲
         conv_list = list()
         for row in sheet_range:
             for cell in row:

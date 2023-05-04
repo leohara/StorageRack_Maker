@@ -18,12 +18,12 @@ class Front:
         margin3 = 608  # 固定棚ありの上下
         margin4 = self.param.DaiwaH - 12  # 台輪 - フローリング
         # 固定棚無し
-        if self.param.H <= 2157:
-            tyoban_center_h = self.param.H - (self.param.Door_Tenka * 2 + margin1 * 2 + margin2 * 2 + margin4)
+        if self.param.h_B <= 2157:
+            tyoban_center_h = self.param.h_B - (self.param.Door_Tenka * 2 + margin1 * 2 + margin2 * 2 + margin4)
             tyoban_list = [self.param.Door_Tenka + margin1, margin2, tyoban_center_h, margin2]
         # 固定棚有り
-        elif self.param.H > 2157:
-            tyoban_center_h = self.param.H - (self.param.Door_Tenka * 2 + margin1 * 2 + margin3 * 2 + margin4)
+        elif self.param.h_B > 2157:
+            tyoban_center_h = self.param.h_B - (self.param.Door_Tenka * 2 + margin1 * 2 + margin3 * 2 + margin4)
             tyoban_list = [self.param.Door_Tenka + margin1, margin3, tyoban_center_h, margin3]
 
         # 全然合わないので2061だけ603.5スタートでそこから468ずつ足した
@@ -59,6 +59,7 @@ class Front:
             exec(f'self.d_list.append(self.param.d_{block})')
             exec(f'self.PanelH_list.append(self.param.PanelH_{block})')
             exec(f'self.TenkaW_list.append(self.param.TenkaW_{block})')
+        self.W = sum(self.w_list) + 18 * (len(self.w_list) + 1)
 
         # -1: 後者が低い
         # 0: フラット
@@ -166,7 +167,7 @@ class Front:
 
     def m_shelf_board(self):
         X1 = self.x + self.param.PanelW
-        X2 = self.x + self.param.W - self.param.PanelW
+        X2 = self.x + self.W - self.param.PanelW
         Y = self.y + self.param.shelfH - 5 + 4.5  # 5を引かないと合わない
         for h in self.maepin_list:
             Y1 = Y + h
@@ -205,7 +206,7 @@ class Front:
             self.command_list.append(line)
             X_reset = X2
             ###############
-            X1 = X2 - self.param.PanelW + self.param.W - self.param.PanelW
+            X1 = X2 - self.param.PanelW + self.W - self.param.PanelW
             Y1 = Y + h
             X2 = X1 - 13
             line = commands.line_command(X1, Y1, X2, Y1)

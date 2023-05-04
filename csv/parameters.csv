@@ -1,5 +1,4 @@
 name,value
-D,650
 DaiwaD,654
 DaiwaH,72
 DaiwaW,2124
@@ -9,7 +8,6 @@ Door_Tenka_inside,7.5
 Door_shelf,24
 Frame_inner,9
 Frame_outer,12
-H,2253
 PanelD,665
 PanelD_B,665
 PanelD_C,665
@@ -39,7 +37,6 @@ UraW,693
 UraW_B,675
 UraW_C,675
 UraW_D,675
-W,2124
 d_B,650
 d_C,650
 d_D,650
