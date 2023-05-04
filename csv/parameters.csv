@@ -7,13 +7,15 @@ DoorD,22
 Door_Tenka,10.5
 Door_Tenka_inside,7.5
 Door_shelf,24
+Frame_inner,9
+Frame_outer,12
 H,2253
 PanelD,665
 PanelD_B,665
 PanelD_C,665
 PanelD_D,665
 PanelH,2097
-PanelH_B,2097
+PanelH_B,2193
 PanelH_C,2193
 PanelH_D,2097
 PanelW,18
@@ -30,7 +32,7 @@ TenkaW_C,684
 TenkaW_D,684
 UraD,8
 UraH,2070
-UraH_B,2070
+UraH_B,2166
 UraH_C,2166
 UraH_D,2070
 UraW,693
@@ -46,7 +48,7 @@ gap_back,8
 gap_dowel,32
 gap_dowel_back,53
 gap_dowel_front,36
-h_B,2157
+h_B,2253
 h_C,2253
 h_D,2157
 left_and_right,"['B', 'D']"

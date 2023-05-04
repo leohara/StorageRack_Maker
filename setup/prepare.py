@@ -116,6 +116,8 @@ class Sheet:
         self.Door_Tenka_inside = 7.5
         self.PanelW_inner = 7
         self.PanelW_outer = 11
+        self.Frame_inner = 9
+        self.Frame_outer = 12
 
 
 def to_txt(sheet):

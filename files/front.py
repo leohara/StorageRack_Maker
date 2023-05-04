@@ -60,6 +60,20 @@ class Front:
             exec(f'self.PanelH_list.append(self.param.PanelH_{block})')
             exec(f'self.TenkaW_list.append(self.param.TenkaW_{block})')
 
+        # -1: 後者が低い
+        # 0: フラット
+        # 1: 後者が高い
+        self.bump_list = list()
+        for i in range(len(self.PanelH_list)):
+            if i == 0:
+                self.bump_list.append(0)
+            else:
+                if self.PanelH_list[i] == self.PanelH_list[i - 1]:
+                    self.bump_list.append(0)
+                else:
+                    self.bump_list.append(int((self.PanelH_list[i] - self.PanelH_list[i - 1]) / abs(self.PanelH_list[i] - self.PanelH_list[i - 1])))
+        print(self.bump_list)
+
     # デコレーターで初期化する
     def decorator(func):
         def inner(self, *args, **kwargs):
@@ -108,12 +122,12 @@ class Front:
                 Y2 = Y1 + PanelH - prevH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
-            if PanelH < prevH:
+            elif PanelH < prevH:
                 Y1 = Y1 + PanelH
                 Y2 = Y1 + prevH - PanelH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
-            if enum == 0:
+            elif enum == 0:
                 Y2 = Y1 + PanelH
                 command = commands.line_command(X1, Y1, X1, Y2)
                 self.command_list.append(command)
@@ -288,6 +302,7 @@ class Front:
         prevH = self.PanelH_list[0]
         X2 = self.x + 6
         for PanelH, TenkaW in zip(self.PanelH_list, self.TenkaW_list):
+            print(TenkaW)
             X1 = X2
             Y1 = self.y
             if PanelH > prevH:
@@ -307,11 +322,13 @@ class Front:
                 self.command_list.append(command)
 
             if enum == 0:
-                X2 = X1 + TenkaW + self.param.PanelW_inner + self.param.PanelW_outer
+                X2 = X1 + TenkaW + self.param.Frame_inner + self.param.Frame_outer - 3 * self.bump_list[enum + 1]
             elif enum == self.param.num - 1:
-                X2 = X1 + TenkaW + 2 * self.param.PanelW_inner + 4 + 5
+                Y1 = self.y - 60
+                Y2 = Y1 + PanelH + 54
+                X2 = X1 + TenkaW + self.param.Frame_inner + self.param.Frame_outer + 3 * self.bump_list[enum]
             else:
-                X2 = X1 + TenkaW + 2 * self.param.PanelW_inner + 4
+                X2 = X1 + TenkaW + self.param.Frame_inner * 2 + 3 * (self.bump_list[enum] - self.bump_list[enum + 1])
             command = commands.line_command(X1, Y2, X2, Y2)
             self.command_list.append(command)
             if enum == self.param.num - 1:
