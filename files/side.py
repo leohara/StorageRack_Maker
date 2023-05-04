@@ -112,7 +112,7 @@ class Side:
         X1 = self.x + self.param.D
         Y1 = self.y + 13
         X2 = X1 + self.param.UraD
-        Y2 = Y1 + self.param.h_B - 87
+        Y2 = Y1 + self.param.h_D - 87
         command = commands.rec_command(X1, Y1, X2, Y2)
         self.command_list.append(command)
 
@@ -217,7 +217,7 @@ class Side:
         X1 = self.x + self.param.TenkaD
         Y1 = self.y + 18
         X2 = X1
-        Y2 = Y1 + self.param.h_B - 96
+        Y2 = Y1 + self.param.h_D - 96
         line = commands.line_command(X1, Y1, X2, Y2)
         self.command_list.append(line)
         X1 = self.x + self.param.TenkaD + 30
