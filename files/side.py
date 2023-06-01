@@ -268,7 +268,6 @@ class Side:
             X1 = self.x + self.param.gap_dowel_front - self.param.tyobanW / 2
             X2 = self.x + self.param.gap_dowel_front + self.param.tyobanW / 2
             Y1 += h
-            self.param.h_B = Y1
             line = commands.line_command(X1, Y1, X2, Y1)
             self.command_list.append(line)
 
@@ -791,6 +790,114 @@ class Side:
         command = commands.circle_command(X2, Y2, 10)
         self.command_list.append(command)
         command = commands.text((X1 + X2) / 2, Y1 + 10, 0, "{}".format(X2 - X1))
+        self.command_list.append(command)
+
+        X1 = self.x - 500
+        Y1 = self.y - 60
+        Y2 = Y1 + self.param.h_B
+        line = commands.line_command(X1, Y1, X1, Y2)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X1, Y2, 10)
+        self.command_list.append(command)
+        command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "H={}".format(Y2 - Y1))
+        self.command_list.append(command)
+
+        X1 = self.x - 400
+        Y1 = self.y - 60
+        Y2 = Y1 + 60
+        line = commands.line_command(X1, Y1, X1, Y2)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X1, Y2, 10)
+        self.command_list.append(command)
+        command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "{}".format(Y2 - Y1))
+        self.command_list.append(command)
+
+        X1 = self.x - 400
+        Y1 = Y2
+        Y2 = Y1 + 10.5
+        line = commands.line_command(X1, Y1, X1, Y2)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X1, Y2, 10)
+        self.command_list.append(command)
+        command = commands.text(X1 + 60, (Y1 + Y2) / 2 + 40, 90, "{}".format(Y2 - Y1))
+        self.command_list.append(command)
+
+        X1 = self.x - 400
+        Y1 = Y2
+        Y2 = Y1 + self.param.h_B - 60 - 10.5 * 2
+        line = commands.line_command(X1, Y1, X1, Y2)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X1, Y2, 10)
+        self.command_list.append(command)
+        command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "DH={}".format(Y2 - Y1))
+        self.command_list.append(command)
+
+        X1 = self.x - 400
+        Y1 = Y2
+        Y2 = Y1 + 10.5
+        line = commands.line_command(X1, Y1, X1, Y2)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X1, Y2, 10)
+        self.command_list.append(command)
+        command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "{}".format(Y2 - Y1))
+        self.command_list.append(command)
+
+        X1 = self.x - self.param.DoorD
+        X2 = X1 + self.param.DoorD
+        Y1 = self.y + self.param.h_B * 0.7
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X2, Y1, 10)
+        self.command_list.append(command)
+        command = commands.text((X1 + X2) / 2 - 50, Y1 + 50, 0, "{}".format(X2 - X1))
+        self.command_list.append(command)
+
+        X1 = X2
+        X2 = X1 + self.param.d_B
+        Y1 = self.y + self.param.h_B * 0.7
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X2, Y1, 10)
+        self.command_list.append(command)
+        command = commands.text((X1 + X2) / 2, Y1 + 50, 0, "{}".format(X2 - X1))
+        self.command_list.append(command)
+
+        X1 = X2
+        X2 = X1 + self.param.UraD * 2
+        Y1 = self.y + self.param.h_B * 0.7
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X2, Y1, 10)
+        self.command_list.append(command)
+        command = commands.text((X1 + X2) / 2 - 50, Y1 + 50, 0, "{}".format(X2 - X1))
+        self.command_list.append(command)
+
+        X1 = self.x - self.param.DoorD
+        X2 = X1 + self.param.DoorD + self.param.d_B + self.param.UraD * 2
+        Y1 = self.y + self.param.h_B * 0.6
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        command = commands.circle_command(X1, Y1, 10)
+        self.command_list.append(command)
+        command = commands.circle_command(X2, Y1, 10)
+        self.command_list.append(command)
+        command = commands.text((X1 + X2) / 2, Y1 + 50, 0, "D={}".format(X2 - X1))
         self.command_list.append(command)
 
     def mk_command_side(self):
