@@ -73,7 +73,6 @@ class Front:
                     self.bump_list.append(0)
                 else:
                     self.bump_list.append(int((self.PanelH_list[i] - self.PanelH_list[i - 1]) / abs(self.PanelH_list[i] - self.PanelH_list[i - 1])))
-        print(self.bump_list)
 
     # デコレーターで初期化する
     def decorator(func):
@@ -303,7 +302,6 @@ class Front:
         prevH = self.PanelH_list[0]
         X2 = self.x + 6
         for PanelH, TenkaW in zip(self.PanelH_list, self.TenkaW_list):
-            print(TenkaW)
             X1 = X2
             Y1 = self.y
             if PanelH > prevH:
@@ -367,20 +365,6 @@ class Front:
         line = commands.line_command(X1, Y1, X2, Y2)
         self.command_list.append(line)
 
-    def green_line(self):
-        X1 = 900
-        X2 = 900
-        Y1 = 600
-        Y2 = 900
-        line = commands.line_command(X1, Y1, X2, Y2)
-        self.command_list.append(line)
-        command = commands.circle_command(X1, Y1, 10)
-        self.command_list.append(command)
-        command = commands.circle_command(X2, Y2, 10)
-        self.command_list.append(command)
-        command = commands.text(X1 - 20, (Y1 + Y2) / 2, 90, "{}".format(Y2 - Y1))
-        self.command_list.append(command)
-
     # コマンドをプリントする
     def mk_command_front(self):
         """
@@ -402,8 +386,6 @@ class Front:
         # HP() # ハンガーパイプの高さがわかったら描く
         self.layer_change(self, 'MAGENTA')
         self.magenta_line()
-        self.layer_change(self, 'GREEN')
-        self.green_line()
 
         command_line = '\n'.join(self.command_list)
 
