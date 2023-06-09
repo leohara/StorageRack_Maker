@@ -766,6 +766,9 @@ class Side:
         """
 
     def green_line(self):
+        vertical_line_1 = 280
+        vertical_line_2 = 180
+
         # 手前側
         X1 = self.x + 13.5
         Y1 = self.y - 310
@@ -803,6 +806,11 @@ class Side:
         self.command_list.append(command)
         command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "H={}".format(Y2 - Y1))
         self.command_list.append(command)
+        X2 = X1 + vertical_line_1
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        line = commands.line_command(X1, Y2, X2, Y2)
+        self.command_list.append(line)
 
         X1 = self.x - 400
         Y1 = self.y - 60
@@ -815,6 +823,11 @@ class Side:
         self.command_list.append(command)
         command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "{}".format(Y2 - Y1))
         self.command_list.append(command)
+        X2 = X1 + vertical_line_2
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        line = commands.line_command(X1, Y2, X2, Y2)
+        self.command_list.append(line)
 
         X1 = self.x - 400
         Y1 = Y2
@@ -827,6 +840,11 @@ class Side:
         self.command_list.append(command)
         command = commands.text(X1 + 60, (Y1 + Y2) / 2 + 40, 90, "{}".format(Y2 - Y1))
         self.command_list.append(command)
+        X2 = X1 + vertical_line_2
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        line = commands.line_command(X1, Y2, X2, Y2)
+        self.command_list.append(line)
 
         X1 = self.x - 400
         Y1 = Y2
@@ -839,6 +857,11 @@ class Side:
         self.command_list.append(command)
         command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "DH={}".format(Y2 - Y1))
         self.command_list.append(command)
+        X2 = X1 + vertical_line_2
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        line = commands.line_command(X1, Y2, X2, Y2)
+        self.command_list.append(line)
 
         X1 = self.x - 400
         Y1 = Y2
@@ -851,6 +874,11 @@ class Side:
         self.command_list.append(command)
         command = commands.text(X1 - 50, (Y1 + Y2) / 2, 90, "{}".format(Y2 - Y1))
         self.command_list.append(command)
+        X2 = X1 + vertical_line_2
+        line = commands.line_command(X1, Y1, X2, Y1)
+        self.command_list.append(line)
+        line = commands.line_command(X1, Y2, X2, Y2)
+        self.command_list.append(line)
 
         X1 = self.x - self.param.DoorD
         X2 = X1 + self.param.DoorD
