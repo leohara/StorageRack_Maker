@@ -1,6 +1,6 @@
 # ガイド材を描く
 # もっと簡単に描けそう
-def guide(param, commands, command_list, x, y, PanelH):
+def create(param, commands, command_list, x, y, PanelH):
     X1 = x
     Y1 = y + PanelH
     X2 = X1 + 30

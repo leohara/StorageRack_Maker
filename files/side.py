@@ -20,8 +20,6 @@ class Side(cb.CommandBuilder):
             if hasattr(self.param, name):
                 self.h_list.append(getattr(self.param, name))
 
-        self.variables = ["PanelH_A", "PanelH_B", "PanelH_C", "PanelH_D", "h_A", "h_B", "h_C", "h_D"]
-
     def switch(self, key):
         var_list = []
         for prefix in ["PanelH_", "w_", "h_", "d_"]:
@@ -33,7 +31,7 @@ class Side(cb.CommandBuilder):
 
         var_list = self.switch(key)
         PanelH = var_list[0]
-        # w = var_list[1]
+        # w = var_list[1] # 今のところ使わない
         h = var_list[2]
         d = var_list[3]
 
@@ -41,31 +39,38 @@ class Side(cb.CommandBuilder):
 
         self.layer_change(self, 'RED')
         daiwa.create(*self.args)
-        tenka.tenka_under(*self.args, PanelH)
-        tenka.tenka_top(*self.args, PanelH)
-        ura.ura(*self.args, h, d)
-        guide.guide(*self.args, PanelH)
+        tenka.create_under(*self.args, PanelH)
+        tenka.create_top(*self.args, PanelH)
+        ura.create(*self.args, h, d)
+        guide.create(*self.args, PanelH)
+
         self.layer_change(self, 'WHITE')
-        door.door(*self.args, PanelH)
-        white_line.white_lines(*self.args, PanelH, h)
-        tyoban_lines.tyoban_lines(*self.args, self.tyoban_list)
+        door.create(*self.args, PanelH)
+        white_line.create(*self.args, PanelH, h)
+        tyoban_lines.create(*self.args, self.tyoban_list)
+
         self.layer_change(self, 'YELLOW')
-        yellow_lines.yellow_lines(*self.args)
+        yellow_lines.create(*self.args)
+
         self.layer_change(self, 'CYAN')
-        hole.hole(*self.args, PanelH, d)
+        hole.create(*self.args, PanelH, d)
         self.command_list.append('')
-        tyoban.tyoban(*self.args, self.tyoban_list)
+        tyoban.create(*self.args, self.tyoban_list)
         self.command_list.append('ATTDIA 0 ')
         self.command_list.append('')
-        maepin_and_ushiropin.body(*self.args, self.maepin_list)
+        maepin_and_ushiropin.create_body(*self.args, self.maepin_list)
         self.command_list.append('')
         self.command_list.append('ATTDIA 0 ')
+
         self.layer_change(self, 'MAGENTA')
-        maepin_and_ushiropin.line(*self.args, self.maepin_list)
+        maepin_and_ushiropin.create_line(*self.args, self.maepin_list)
+
         self.layer_change(self, 'WHITE')
-        shelf.m_shelf_board(*self.args, self.maepin_list)
+        shelf.create(*self.args, self.maepin_list)
+
         self.layer_change(self, 'GREEN')
-        dimension.green_line(*self.args, h, d)
+        measurement.create(*self.args, h, d)
+
         command_line = '\n'.join(self.command_list)
 
         path_w = 'scripts\side.txt'

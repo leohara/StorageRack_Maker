@@ -1,4 +1,4 @@
-def tyoban_lines(param, commands, command_list, x, y, y_list):
+def create(param, commands, command_list, x, y, y_list):
 
     Y1 = y
     for height in y_list:

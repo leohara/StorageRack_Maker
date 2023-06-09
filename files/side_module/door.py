@@ -1,5 +1,5 @@
 # 扉を描く
-def door(param, commands, command_list, x, y, PanelH):
+def create(param, commands, command_list, x, y, PanelH):
     """
     """
     X1 = x

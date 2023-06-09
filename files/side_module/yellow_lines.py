@@ -1,5 +1,5 @@
 # 周りの線を描く
-def yellow_lines(param, commands, command_list, x, y):
+def create(param, commands, command_list, x, y):
     # 手前側
     X1 = x + 13.5
     Y1 = y - 310

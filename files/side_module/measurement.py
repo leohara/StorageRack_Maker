@@ -1,4 +1,4 @@
-def green_line(param, commands, command_list, x, y, h, d):
+def create(param, commands, command_list, x, y, h, d):
     vertical_line_1 = 280  # Hの列
     vertical_line_2 = 180  # DHの列
 

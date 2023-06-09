@@ -1,5 +1,5 @@
 # 蝶番を描く
-def tyoban(param, commands, command_list, x, y, y_list):
+def create(param, commands, command_list, x, y, y_list):
 
     """
     固定棚が取り付けられるタイミングで真ん中の間隔が576→608になる

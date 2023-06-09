@@ -1,4 +1,4 @@
-def body(param, commands, command_list, x, y, y_list):
+def create_body(param, commands, command_list, x, y, y_list):
 
     X = x + param.gap_dowel_front
     # なぜか5引かないとうまくいかない
@@ -174,7 +174,7 @@ def body(param, commands, command_list, x, y, y_list):
         Y = y + 18 - 5
 
 
-def line(param, commands, command_list, x, y, y_list):
+def create_line(param, commands, command_list, x, y, y_list):
     X = x + param.gap_dowel_front
     # なぜか5引かないとうまくいかない
     Y = y + 18 - 5

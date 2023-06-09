@@ -1,5 +1,5 @@
 # ダボ穴を描く
-def hole(param, commands, command_list, x, y, PanelH, d):
+def create(param, commands, command_list, x, y, PanelH, d):
     """
     D寸法が900以上でダボが5個
     600以上で3列

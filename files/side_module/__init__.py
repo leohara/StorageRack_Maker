@@ -3,7 +3,7 @@ __all__ = [
     "tyoban_lines",
     "daiwa",
     "shelf",
-    "dimension",
+    "measurement",
     "guide",
     "tenka",
     "hole",

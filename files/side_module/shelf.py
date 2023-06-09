@@ -1,4 +1,4 @@
-def m_shelf_board(param, commands, command_list, x, y, y_list):
+def create(param, commands, command_list, x, y, y_list):
     X1 = x + param.Door_shelf
     X2 = X1 + param.TenkaD - param.gap_back - param.UraD - param.Door_shelf
     Y = y + param.shelfH - 5 + 4.5  # 5を引かないと合わない
