@@ -1,36 +1,37 @@
-from .module import commands
-from . import command_builder as cb
+from .module_main import command_builder as cb
+from .module_main import commands
+from .module_front import *
 
 
 class Front(cb.CommandBuilder):
 
     def __init__(self):
+
         super().__init__()
+
         self.x = self.param.x_front
         self.y = self.param.y_front
-        # 高さからリストを取得してくる
-        exec('self.maepin_list = self.maepin_list_dict[str(int(self.param.h_{}))]'.format(self.param.left_and_right[0]))  # Aだけにしない直す
 
-        self.w_list = list()
-        self.h_list = list()
-        self.d_list = list()
-        self.PanelD_list = list()
-        self.PanelH_list = list()
-        self.PanelW_list = list()
-        self.TenkaD_list = list()
-        self.TenkaH_list = list()
-        self.TenkaW_list = list()
-        self.TenkaD_list = list()
-        self.UraH_list = list()
-        self.UraW_list = list()
-        self.UraD_List = list()
-        for block in self.param.order_from_left:
-            exec(f'self.w_list.append(self.param.w_{block})')
-            exec(f'self.h_list.append(self.param.h_{block})')
-            exec(f'self.d_list.append(self.param.d_{block})')
-            exec(f'self.PanelH_list.append(self.param.PanelH_{block})')
-            exec(f'self.TenkaW_list.append(self.param.TenkaW_{block})')
+        values = {prefix: [] for prefix in ["w", "h", "d", "P", "T"]}
+        suffixes = [i for i in self.param.order_from_left]
+
+        for prefix in ["w_", "h_", "d_", "PanelH_", "TenkaW_"]:
+            for suffix in suffixes:
+                var_name = "{}{}".format(prefix, suffix)
+                if hasattr(self.param, var_name):
+                    values[prefix[0]].append(getattr(self.param, var_name))
+
+        var_dict = values
+        self.w_list = var_dict["w"]
+        self.h_list = var_dict["h"]
+        self.d_list = var_dict["d"]
+        self.PanelH_list = var_dict["P"]
+        self.TenkaW_list = var_dict["T"]
+
         self.W = sum(self.w_list) + 18 * (len(self.w_list) + 1)
+
+        # 高さからリストを取得してくる
+        self.maepin_dict = {var: self.maepin_list_dict[str(var)] for var in self.h_list}
 
         # -1: 後者が低い
         # 0: フラット
@@ -45,15 +46,7 @@ class Front(cb.CommandBuilder):
                 else:
                     self.bump_list.append(int((self.PanelH_list[i] - self.PanelH_list[i - 1]) / abs(self.PanelH_list[i] - self.PanelH_list[i - 1])))
 
-    def Door(self):
-        X1 = self.x + self.param.PanelW_outer
-        Y1 = self.y + self.param.Door_Tenka
-        for TenkaW, PanelH in zip(self.TenkaW_list, self.PanelH_list):
-            Y2 = Y1 + PanelH - 2 * self.param.Door_Tenka
-            X2 = X1 + TenkaW + self.param.PanelW_inner * 2
-            command = commands.rec_command(X1, Y1, X2, Y2)
-            self.command_list.append(command)
-            X1 = X2 + 4
+        self.args = self.param, commands, self.command_list, self.x, self.y
 
     def Frame(self):
         flame_flag = [int(
@@ -115,14 +108,27 @@ class Front(cb.CommandBuilder):
             X1 = X2
 
     def m_shelf_board(self):
-        X1 = self.x + self.param.PanelW
-        X2 = self.x + self.W - self.param.PanelW
-        Y = self.y + self.param.shelfH - 5 + 4.5  # 5を引かないと合わない
-        for h in self.maepin_list:
-            Y1 = Y + h
-            Y2 = Y1 + self.param.shelfH
-            command = commands.rec_command(X1, Y1, X2, Y2)
-            self.command_list.append(command)
+        inc = 0
+        list_i = 0
+        maepin = self.maepin_dict.values()
+        for w in self.w_list:
+            if inc == 0:
+                X1 = self.x + self.param.PanelW
+                X2 = X1 + w
+            else:
+                X1 = X2 + self.param.PanelW
+                X2 = X1 + w
+            Y = self.y + self.param.shelfH - 5 + 4.5  # 5を引かないと合わない
+            maepin_tmp = list(maepin)[list_i]
+            for h in maepin_tmp:
+                Y1 = Y + h
+                Y2 = Y1 + self.param.shelfH
+                command = commands.rec_command(X1, Y1, X2, Y2)
+                self.command_list.append(command)
+            if inc != self.param.num - 1:
+                if self.write_flag[inc + 1]:
+                    list_i += 1
+            inc += 1
 
     def HP(self):
         X1 = self.x + self.param.PanelW
@@ -315,25 +321,50 @@ class Front(cb.CommandBuilder):
         line = commands.line_command(X1, Y1, X2, Y2)
         self.command_list.append(line)
 
+    def make_list(self):
+
+        values = {prefix: [] for prefix in ["w", "h", "d"]}
+        suffixes = ["A", "B", "C", "D"]
+
+        for prefix in ["w_", "h_", "d_"]:
+            for suffix in suffixes:
+                var_name = "{}{}".format(prefix, suffix)
+                if hasattr(self.param, var_name):
+                    values[prefix[0]].append(getattr(self.param, var_name))
+
+        return values
+
     # コマンドをプリントする
     def mk_command_front(self):
         """
         """
 
+        var_dict = self.make_list()
+        w_list_temp = var_dict['w']
+        # h_list_temp = var_dict['h']
+        # d_list_temp = var_dict['d']
+
+        self.args = self.param, commands, self.command_list, self.x, self.y
+
         self.layer_change(self, 'WHITE')
-        self.Door()
-        self.ground()
+        door.create(*self.args, self.PanelH_list, self.TenkaW_list)
+        ground.create(*self.args)
+
         self.layer_change(self, 'PHANTOM2')
-        self.cross_line()
+        cross.create(*self.args, self.PanelH_list, self.TenkaW_list)
+
         self.layer_change(self, 'TNSN3')
-        self.Frame()  # 青い点線
-        self.m_shelf_board()
+        frame.create(*self.args, self.PanelH_list, self.TenkaW_list)  # 青い点線
+        shelf.create(*self.args, w_list_temp, self.maepin_dict, self.write_flag)
+
         self.layer_change(self, 'CYAN')
-        self.cyan_Frame()  # 青い実線
+        cyan.create(*self.args, self.PanelH_list, self.TenkaW_list, self.bump_list)  # 青い実線
+
         # layer_change('CYAN')
         # HP() # ハンガーパイプの高さがわかったら描く
+
         self.layer_change(self, 'MAGENTA')
-        self.magenta_line()
+        magenta.create(*self.args, w_list_temp, self.PanelH_list)
 
         command_line = '\n'.join(self.command_list)
 

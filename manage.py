@@ -43,13 +43,12 @@ if __name__ == "__main__":
     df_new.to_csv('csv/update.csv', index=False)
 
     write_side = side.Side()
-    write_flag = [0 if write_side.h_list[i] in write_side.h_list[:i] else 1 for i in range(len(write_side.h_list))]
-    for i in range(len(write_flag)):
+    for i in range(len(write_side.write_flag)):
         if not i:
             write_side.mk_command_side(write_side.param.order_from_left[i])
             inc = 0
         else:
-            if write_flag[i]:
+            if write_side.write_flag[i]:
                 inc += 1
                 write_side.x = -inc * 2000
                 write_side.mk_command_side(write_side.param.order_from_left[i])

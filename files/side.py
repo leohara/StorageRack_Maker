@@ -1,24 +1,21 @@
-from .module import commands
-from . import command_builder as cb
-from .side_module import *
+from .module_main import command_builder as cb
+from .module_main import commands
+from .module_side import *
 
 
 class Side(cb.CommandBuilder):
 
     def __init__(self):
+
         super().__init__()
+
         self.x = self.param.x_side
         self.y = self.param.y_side
 
         # 高さからリストを取得してくる
         self.maepin_list = self.maepin_list_dict[str(int(self.param.h_B))]
 
-        # フラグの作成
-        required_vars = ["h_{}".format(i) for i in self.param.order_from_left]
-        self.h_list = list()
-        for name in required_vars:
-            if hasattr(self.param, name):
-                self.h_list.append(getattr(self.param, name))
+        self.args = self.param, commands, self.command_list, self.x, self.y
 
     def switch(self, key):
         var_list = []

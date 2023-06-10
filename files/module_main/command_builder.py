@@ -1,10 +1,11 @@
-from .module import parameters
+from . import parameters
 
 
 class CommandBuilder():
     def __init__(self):
         self.command_list = list()
         self.param = parameters.Param()
+
         self.x = 0
         self.y = 0
 
@@ -34,6 +35,15 @@ class CommandBuilder():
                                  '2349': [603.5, 1211.5],
                                  '2445': [603.5, 1211.5]
                                  }
+
+        # フラグの作成
+        required_vars = ["h_{}".format(i) for i in self.param.order_from_left]
+        self.h_list = list()
+        for name in required_vars:
+            if hasattr(self.param, name):
+                self.h_list.append(getattr(self.param, name))
+
+        self.write_flag = [0 if self.h_list[i] in self.h_list[:i] else 1 for i in range(len(self.h_list))]
 
     # デコレーターで初期化する
     def decorator(func):
