@@ -81,12 +81,8 @@ class Sheet:
                         )
 
         for i in self.order_from_left:
-            exec('self.PanelH_{} = self.h_{} - 60'.format(i, i))
-            exec('self.PanelD_{} = self.d_{} + 15'.format(i, i))
-            exec('self.TenkaW_{} = self.w_{}'.format(i, i))
-            exec('self.TenkaD_{} = self.d_{} - 14'.format(i, i))
-            exec('self.UraH_{} = self.h_{} - 87'.format(i, i))
-            exec('self.UraW_{} = self.w_{} - 9'.format(i, i))
+            exec('self.PanelH_{} = self.h_{} - 60'.format(i, i))  # frontに依存
+            exec('self.TenkaW_{} = self.w_{}'.format(i, i))  # frontに依存
 
         self.PanelW = 18
         self.TenkaH = 18
@@ -106,7 +102,6 @@ class Sheet:
         self.gap_back = 8
         self.tyobanW = 45
 
-        self.Door_Tenka_inside = 7.5
         self.PanelW_inner = 7
         self.PanelW_outer = 11
         self.Frame_inner = 9

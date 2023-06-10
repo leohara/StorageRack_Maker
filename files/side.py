@@ -22,7 +22,7 @@ class Side(cb.CommandBuilder):
 
     def switch(self, key):
         var_list = []
-        for prefix in ["PanelH_", "w_", "h_", "d_"]:
+        for prefix in ["w_", "h_", "d_"]:
             if hasattr(self.param, prefix + key):
                 var_list.append(getattr(self.param, prefix + key))
         return var_list
@@ -30,17 +30,19 @@ class Side(cb.CommandBuilder):
     def mk_command_side(self, key):
 
         var_list = self.switch(key)
-        PanelH = var_list[0]
-        # w = var_list[1] # 今のところ使わない
-        h = var_list[2]
-        d = var_list[3]
+        # w = var_list[0] # 今のところ使わない
+        h = var_list[1]
+        d = var_list[2]
+
+        flooring = 12  # フローリングの厚み
+        PanelH = h - self.param.DaiwaH + flooring  # パネル板の高さ
 
         self.args = self.param, commands, self.command_list, self.x, self.y
 
         self.layer_change(self, 'RED')
-        daiwa.create(*self.args)
-        tenka.create_under(*self.args, PanelH)
-        tenka.create_top(*self.args, PanelH)
+        daiwa.create(*self.args, d)
+        tenka.create_under(*self.args, PanelH, d)
+        tenka.create_top(*self.args, PanelH, d)
         ura.create(*self.args, h, d)
         guide.create(*self.args, PanelH)
 
