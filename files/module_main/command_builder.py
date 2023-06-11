@@ -1,13 +1,12 @@
 from . import parameters
+from . import commands
 
 
 class CommandBuilder():
     def __init__(self):
         self.command_list = list()
         self.param = parameters.Param()
-
-        self.x = 0
-        self.y = 0
+        self.commands = commands.Commands()
 
         # tyoban_lines & tyoban
         margin1 = 142  # 最上下端

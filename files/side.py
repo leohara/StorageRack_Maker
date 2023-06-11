@@ -1,5 +1,4 @@
 from .module_main import command_builder as cb
-from .module_main import commands
 from .module_side import *
 
 
@@ -15,7 +14,7 @@ class Side(cb.CommandBuilder):
         # 高さからリストを取得してくる
         self.maepin_list = self.maepin_list_dict[str(int(self.param.h_B))]
 
-        self.args = self.param, commands, self.command_list, self.x, self.y
+        self.args = self.param, self.commands, self.command_list, self.x, self.y
 
     def switch(self, key):
         var_list = []
@@ -34,7 +33,7 @@ class Side(cb.CommandBuilder):
         flooring = 12  # フローリングの厚み
         PanelH = h - self.param.DaiwaH + flooring  # パネル板の高さ
 
-        self.args = self.param, commands, self.command_list, self.x, self.y
+        self.args = self.param, self.commands, self.command_list, self.x, self.y
 
         self.layer_change(self, 'RED')
         daiwa.create(*self.args, d)
