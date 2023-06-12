@@ -38,7 +38,7 @@ class Side(cb.CommandBuilder):
         self.layer_change(self, 'RED')
         daiwa.create(*self.args, d)
         tenka.create(*self.args, PanelH, d)
-        ura.create(*self.args, h, d)
+        ura.create(*self.args, PanelH, d)
         guide.create(*self.args, PanelH)
 
         self.layer_change(self, 'WHITE')
