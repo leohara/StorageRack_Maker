@@ -51,7 +51,7 @@ class Side(cb.CommandBuilder):
         yellow_lines.create(*self.args)
 
         self.layer_change(self, 'CYAN')
-        hole.create(*self.args, PanelH, d)
+        dowel.create(*self.args, PanelH, d)
         self.command_list.append('')
         tyoban.create(*self.args, self.tyoban_list)
         self.command_list.append('ATTDIA 0 ')

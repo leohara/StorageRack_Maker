@@ -176,7 +176,7 @@ def create_body(param, commands, command_list, x, y, y_list):
 
 
 def create_line(param, commands, command_list, x, y, y_list):
-    margin_Door = 36
+    margin_Door = 36 + 2
     X = x + margin_Door
     # なぜか5引かないとうまくいかない
     Y = y + 18 - 5
@@ -197,7 +197,7 @@ def create_line(param, commands, command_list, x, y, y_list):
         line = commands.line_command(X1, Y1, X2, Y2)
         command_list.append(line)
         # ushiropin
-        X = x + param.TenkaD - 55
+        X = x + param.TenkaD - 55 + 2
         X1 = X - 1
         X2 = X - 1
         Y1 = Y - 10.5

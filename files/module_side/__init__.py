@@ -6,7 +6,7 @@ __all__ = [
     "measurement",
     "guide",
     "tenka",
-    "hole",
+    "dowel",
     "ura",
     "door",
     "white_line",
