@@ -2,10 +2,12 @@ def create(param, commands, command_list, x, y, d):
     """台輪コマンドの生成
 
     台輪を描画するコマンドの生成を行う関数
-        ・基準のx座標から12mm右側から開始
+        ・x座標の開始位置:
+            基準のx座標 (x) + 12
+        ・y座標の開始位置: y座標
         ・台輪の奥行寸法 (DaiwaD) は
-            箱の奥行寸法 + 裏板とその隙間(16mm)
-        ・台輪の足の奥行寸法 (daiwa_legD) は18mm
+            箱の奥行寸法 (d) + 裏板とその隙間 (UraD * 2 = 16)
+        ・台輪の足の奥行寸法 (daiwa_legD = 18)
 
     Args:
         param (Param) : Excelから取得してきた値が格納されているクラス
@@ -16,9 +18,9 @@ def create(param, commands, command_list, x, y, d):
         d (int) : 箱の奥行寸法
     """
     # 描画に使用する変数の生成
-    from_x = 12  # 基準から台輪までのx方向のキョリ
-    daiwa_legD = 18  # 台輪の足の奥行方向の長さ
-    DaiwaD = d + param.UraD * 2  # 台輪の奥行寸法
+    from_x = 12
+    daiwa_legD = 18
+    DaiwaD = d + param.UraD * 2
 
     # 手前の足
     X1 = x + from_x
@@ -29,7 +31,7 @@ def create(param, commands, command_list, x, y, d):
     command_list.append(command)
 
     # 奥の足
-    X1 = x + from_x + DaiwaD - daiwa_legD
+    X1 = x + DaiwaD - daiwa_legD
     Y1 = y
     X2 = X1 + daiwa_legD
     Y2 = Y1 - param.DaiwaH
