@@ -8,9 +8,9 @@ def create(param, commands, command_list, x, y, PanelH, d):
         ・最後列 (back_column) :
             基準のx座標 + 天下板の奥行寸法 (TenkaD) - 裏板との隙間 (margin_Ura = 53)
         ・ダボ穴の列数:
-            d < 550 → 2列
+            d in [210, 260, 306, 360, 390, 450] → 2列
             d in [550, 580, 650] → 3列
-            d = 845 → 5列
+            d in [835] → 5列
         ・3列の場合:
             真ん中の列 (middle_column) : 最後列 (back_column) - 250
         ・5列の場合:
