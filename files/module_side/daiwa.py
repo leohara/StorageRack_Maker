@@ -4,7 +4,7 @@ def create(param, commands, command_list, x, y, d):
     台輪を描画するコマンドの生成を行う関数
         ・x座標の開始位置:
             基準のx座標 (x) + 12
-        ・y座標の開始位置: y座標
+        ・y座標の開始位置: 基準のy座標
         ・台輪の奥行寸法 (DaiwaD) は
             箱の奥行寸法 (d) + 裏板とその隙間 (UraD * 2 = 16)
         ・台輪の足の奥行寸法 (daiwa_legD = 18)

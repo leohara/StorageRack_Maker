@@ -4,10 +4,11 @@ def create(param, commands, command_list, x, y, y_list):
     """
     固定棚が取り付けられるタイミングで真ん中の間隔が576→608になる
     """
+    margin_Door = 36
     Y1 = y
     for h in y_list:
-        X1 = x + param.gap_dowel_front - param.tyobanW / 2
-        X2 = x + param.gap_dowel_front + param.tyobanW / 2
+        X1 = x + margin_Door - param.tyobanW / 2
+        X2 = x + margin_Door + param.tyobanW / 2
         Y1 += h
         height = Y1
         # もっと簡略化したい

@@ -1,12 +1,13 @@
 def create_body(param, commands, command_list, x, y, y_list):
-
-    X = x + param.gap_dowel_front
+    margin_Door = 36
+    margin_Ura = 53  # 最後列と裏板の間のキョリ
+    X = x + margin_Door
     # なぜか5引かないとうまくいかない
     Y = y + 18 - 5
 
     for h in y_list:
         # maepin
-        X = x + param.gap_dowel_front
+        X = x + margin_Door
         Y += h
         X1 = X - 12.5
         X2 = X + 12.5
@@ -103,7 +104,7 @@ def create_body(param, commands, command_list, x, y, y_list):
         circle = commands.circle_command(X, Y, 3.5)
         command_list.append(circle)
         # ushiropin
-        X = x + param.TenkaD - param.gap_dowel_back
+        X = x + param.TenkaD - margin_Ura
         X1 = X - 5.25
         X2 = X + 5.25
         Y1 = Y + 4.5
@@ -175,7 +176,8 @@ def create_body(param, commands, command_list, x, y, y_list):
 
 
 def create_line(param, commands, command_list, x, y, y_list):
-    X = x + param.gap_dowel_front
+    margin_Door = 36
+    X = x + margin_Door
     # なぜか5引かないとうまくいかない
     Y = y + 18 - 5
     for h in y_list:
