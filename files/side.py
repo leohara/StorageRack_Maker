@@ -43,7 +43,8 @@ class Side(cb.CommandBuilder):
 
         self.layer_change(self, 'WHITE')
         door.create(*self.args, PanelH)
-        white_line.create(*self.args, PanelH, h)
+        column.create(*self.args, PanelH, h)
+        floor.create(*self.args)
         tyoban_lines.create(*self.args, self.tyoban_list)
 
         self.layer_change(self, 'YELLOW')

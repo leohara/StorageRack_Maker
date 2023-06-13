@@ -9,6 +9,7 @@ __all__ = [
     "dowel",
     "ura",
     "door",
-    "white_line",
+    "column",
     "yellow_lines",
-    "maepin_and_ushiropin"]
+    "maepin_and_ushiropin",
+    "floor"]
