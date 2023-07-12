@@ -1,4 +1,17 @@
 def create(param, commands, command_list, x, y, h, d):
+    """寸法コマンドの生成
+
+    寸法線を描画するコマンドの生成を行う関数
+
+    Args:
+        param (Param) : Excelから取得してきた値が格納されているクラス
+        commands (Commands) : AutoCadで使用するコマンドの生成を行う関数を集めたクラス
+        command_list (list) : 実行したファイルが最終的に出力するAutoCadのコマンドを格納した配列
+        x (int) : AutoCad上で描画をする際の基準となるx座標
+        y (int) : AutoCad上で描画をする際の基準となるy座標
+        h (int) : 箱の高さ寸法
+        d (int) : 箱の奥行寸法
+    """
     vertical_line_1 = 280  # Hの列
     vertical_line_2 = 180  # DHの列
 

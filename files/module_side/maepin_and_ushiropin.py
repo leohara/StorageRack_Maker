@@ -1,9 +1,21 @@
 def create_body(param, commands, command_list, x, y, y_list):
-    margin_Door = 36
+    """前ピンと後ろピンの生成
+
+    前ピンと後ろピンを描画するコマンドの生成を行う関数
+        ・各寸法に関しては図を参照
+
+    Args:
+        param (Param) : Excelから取得してきた値が格納されているクラス
+        commands (Commands) : AutoCadで使用するコマンドの生成を行う関数を集めたクラス
+        command_list (list) : 実行したファイルが最終的に出力するAutoCadのコマンドを格納した配列
+        x (int) : AutoCad上で描画をする際の基準となるx座標
+        y (int) : AutoCad上で描画をする際の基準となるy座標
+        PanelH (int) : パネル板の高さ寸法
+    """
+    margin_Door = 36  # 扉と前ピンのキョリ
     margin_Ura = 53  # 最後列と裏板の間のキョリ
     X = x + margin_Door
-    # なぜか5引かないとうまくいかない
-    Y = y + 18 - 5
+    Y = y + 13
 
     for h in y_list:
         # maepin
@@ -103,6 +115,7 @@ def create_body(param, commands, command_list, x, y, y_list):
         command_list.append(circle)
         circle = commands.circle_command(X, Y, 3.5)
         command_list.append(circle)
+
         # ushiropin
         X = x + param.TenkaD - margin_Ura
         X1 = X - 5.25
@@ -178,8 +191,7 @@ def create_body(param, commands, command_list, x, y, y_list):
 def create_line(param, commands, command_list, x, y, y_list):
     margin_Door = 36 + 2
     X = x + margin_Door
-    # なぜか5引かないとうまくいかない
-    Y = y + 18 - 5
+    Y = y + 13
     for h in y_list:
         # maepin
         X = x + 36

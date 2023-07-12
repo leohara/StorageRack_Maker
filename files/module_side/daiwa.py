@@ -15,7 +15,7 @@ def create(param, commands, command_list, x, y, d):
         command_list (list) : 実行したファイルが最終的に出力するAutoCadのコマンドを格納した配列
         x (int) : AutoCad上で描画をする際の基準となるx座標
         y (int) : AutoCad上で描画をする際の基準となるy座標
-        d (int) : 箱の奥行寸法
+        h (int) : 箱の高さ寸法
     """
     # 描画に使用する変数の生成
     from_x = 12

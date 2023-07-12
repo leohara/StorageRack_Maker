@@ -1,8 +1,17 @@
 # 蝶番を描く
 def create(param, commands, command_list, x, y, y_list):
+    """蝶番コマンドの生成
 
-    """
-    固定棚が取り付けられるタイミングで真ん中の間隔が576→608になる
+    蝶番の概形を描画するコマンドの生成を行う関数
+        ・各寸法に関しては図を参照
+
+    Args:
+        param (Param) : Excelから取得してきた値が格納されているクラス
+        commands (Commands) : AutoCadで使用するコマンドの生成を行う関数を集めたクラス
+        command_list (list) : 実行したファイルが最終的に出力するAutoCadのコマンドを格納した配列
+        x (int) : AutoCad上で描画をする際の基準となるx座標
+        y (int) : AutoCad上で描画をする際の基準となるy座標
+        y_list (list) : 棚の高さが入ったリスト
     """
     margin_Door = 36
     Y1 = y
